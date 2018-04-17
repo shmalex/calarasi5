@@ -3,7 +3,12 @@ from IPython.display import HTML, display
 
 def df_info(df):
     tprint(['{0} rows  by {1} cols'.format(*df.shape)])
+    hprint('data frame head', color='black', h=4)
     print(df.head())
+    hprint('data describe ', color='black', h=4)
+    print(df.describe())
+    hprint('data Info ', color='black', h=4)
+    print(df.info())
 
 def hmap(data):
     d = data
@@ -40,9 +45,11 @@ def tprint(data):
     ))
 
 
-def hprint(msg, c='red'):
-    display(HTML('<h3 style="color:{1}">{0}</h3>'.format(msg, c)))
+def hprint(msg, color='red', h=3, style='normal'):
+    display(HTML('<h{2} style="color:{1}; font-style:{3};">{0}</h{2}>'.format(msg, color, h, style)))
 
+def iprint(msg):
+    hprint(msg, style='italic', color='gray', h=4)
 
 def arr_remove(arr, vals):
     return [x for x in arr if x not in vals]
